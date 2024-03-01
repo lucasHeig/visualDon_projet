@@ -1,17 +1,14 @@
-# visualDon_projet
-- **Contexte:** d'où viennent les données, qui les a créées et dans quel contexte
-  * [Pour les films](https://www.kaggle.com/datasets/ruchi798/movies-on-netflix-prime-video-hulu-and-disney/data)
-  * [Pour les séries](https://www.kaggle.com/datasets/ruchi798/tv-shows-on-netflix-prime-video-hulu-and-disney)
-- **Description** Comment sont structurées les données ? Parler du format, des attributs et du type de données
-- **But:** qu'est-ce que vous voulez découvrir ? Des tendances ? Vous voulez explorer ou expliquer?
-- **Références:** Qui d'autre dans le web ou dans la recherche a utilisé ces données ? Dans quel but ?
-## contexte
-Nous avons choisi une base de données qui contient une liste des séries télévisées disponibles sur diverses plateformes de streaming. La base de données provient du site Kaggle (https://www.kaggle.com/datasets/ruchi798/tv-shows-on-netflix-prime-video-hulu-and-disney), où elle a été publiée par Ruchi Bhatia, avec la collaboration de Nishad Joshi et Sreshta Putchala. Les sources des données ne sont pas précisées, mais elles ont été collectées à partir de multiples sources. La base de données est dans le domaine public, sous la licence CC0. Elle a été mise à jour pour la dernière fois il y a trois ans.
+# Projet Visualisation des données 🎬🍿
+Elodie Perring, Robin Frossard, Lucas Tschaler
 
-## description
-Les données sont disponibles sous la forme d'un fichier CSV. Elles comprennent des informations sur des séries, telles que leur titre, année de production, groupe d'âge cible, note IMDB, note Rotten Tomatoes, ainsi que leur disponibilité sur Netflix, Hulu ou Prime Video. Cette base de données comprend 5717 séries au total, avec des données quantitatives discrètes et continues.
+## Contexte
+Nous avons choisi une base de données qui contient le top 250 des séries télévisées (selon les notes sur IMDB). La base de données provient du site [Kaggle](https://www.kaggle.com/datasets/khushipitroda/imdb-top-250-tv-shows), où elle a été publiée par Khushi Pitroda, avec comme collaborateurs "dima806" et "torikull". Les sources des données proviennent du site [IMDB](https://www.imdb.com/). La base de données est destinée à des fins d’apprentissage, de recherche et d’analyse. Elle a été mise à jour pour la dernière fois en août 2023.
 
-## but
+## Description
+Les données sont disponibles sous la forme d'un fichier CSV. Elles comprennent des informations sur des séries, telles que leur titre, l'année de début et de fin, le nombre d'épisodes, la classification d'âge, la note, l'image, une description et l'URL de la série sur IMDB. Cette base de données comprend donc 250 séries au total, avec des données quantitatives discrètes et continues. 
+
+## But
+Dans un premier temps, nous allons proposer à l’utilisateur·rice de rentrer son année de naissance. Une fois rentrée, une timeline s’affichera depuis son année de naissance jusqu'à aujourd'hui avec, à chaque année, la meilleure série. Un graphique, sous forme de map avec des ronds/hexagones/autres formes, regroupera toutes les séries de la timeline. La taille de la forme représentera la note de la série (plus la note est haute, plus la forme sera grande).
  
-## références
-
+## Références
+Cette base de données peut aussi servir à suivre la tendance des meilleures séries d’années en années ou alimenter un algorithme de recommandation de série pour les utilisateurs·rices.
