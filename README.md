@@ -9,6 +9,11 @@ Les données sont disponibles sous la forme d'un fichier CSV. Elles comprennent 
 
 ## But
 Dans un premier temps, nous allons proposer à l’utilisateur·rice de rentrer son année de naissance. Une fois rentrée, une timeline s’affichera depuis son année de naissance jusqu'à aujourd'hui avec, à chaque année, la meilleure série. Un graphique, sous forme de map avec des ronds/hexagones/autres formes, regroupera toutes les séries de la timeline. La taille de la forme représentera la note de la série (plus la note est haute, plus la forme sera grande).
+
+**Type explorer ou explicatrice ?**
  
 ## Références
 Cette base de données peut aussi servir à suivre la tendance des meilleures séries d’années en années ou alimenter un algorithme de recommandation de série pour les utilisateurs·rices.
+
+**Est-ce que une base de données de ce type à déjà été utilisée et pour quoi ?**
+
