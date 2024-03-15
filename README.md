@@ -1,5 +1,6 @@
 # Projet Visualisation des données 🎬🍿
 Elodie Perring, Robin Frossard, Lucas Tschaler
+Lien de notre wireframe sur [Figma](https://www.figma.com/file/vJgnhfDF7vhiCoD14Et1rU/wireFrame_visualDonn?type=design&node-id=0%3A1&mode=design&t=4hnogtyxH4RZ7kcs-1)
 
 ## Contexte
 Nous avons choisi une base de données qui contient le top 250 des séries télévisées (selon les notes sur IMDB). La base de données provient du site [Kaggle](https://www.kaggle.com/datasets/khushipitroda/imdb-top-250-tv-shows), où elle a été publiée par Khushi Pitroda, avec comme collaborateurs "dima806" et "torikull". Les sources des données proviennent du site [IMDB](https://www.imdb.com/). La base de données est destinée à des fins d’apprentissages, de recherches et d’analyses. Elle a été mise à jour pour la dernière fois en août 2023.
