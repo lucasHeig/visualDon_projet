@@ -56,9 +56,24 @@
   display: block;
 }
 #ageInput label {
+  position: relative;
   font-family: Bebas Neue;
+  font-weight: regular;
+  font-size: 40px;
   color: white;
   background-color: red;
-  padding: 10px;
-  border-radius: 15px;
+  padding: 50px;
+  border-radius: 5px;
+  top: 30vh;
+  left: 30vw;
+}
+
+#timeFrame {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: none;
+}
+#timeFrame.active {
+  display: block;
 }
