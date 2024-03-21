@@ -1,15 +1,16 @@
 * {
   box-sizing: border-box;
 }
-.active {
-    display: block; /* ou "inline-block" ou "flex", selon vos besoins */
-  }
+
 #home {
   width: 100vw;
   height: 100vh;
   background-color: black;
+  display: none;
 }
-
+#home.active {
+  display: block;
+}
 #home h1 {
   position: relative;
   top: 30vh;
@@ -45,6 +46,19 @@
   left: 50vw;
   border-radius: 50%;
 }
-.active {
+#ageInput {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
   display: none;
+}
+#ageInput.active {
+  display: block;
+}
+#ageInput label {
+  font-family: Bebas Neue;
+  color: white;
+  background-color: red;
+  padding: 10px;
+  border-radius: 15px;
 }
