@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+.active {
+    display: block; /* ou "inline-block" ou "flex", selon vos besoins */
+  }
+#home {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+}
+
+#home h1 {
+  position: relative;
+  top: 30vh;
+  font-family: Bebas Neue;
+  font-weight: regular;
+  color: white;
+  font-size: 40px;
+  text-align: center;
+}
+#home #getStarted {
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: red;
+  border-radius: 40px;
+  color: white;
+  position: relative;
+  font-family: Bebas Neue;
+  font-weight: regular;
+  font-size: 30px;
+  top: 35vh;
+  left: 45vw;
+}
+.imageCercle {
+  width: 204px;
+  height: 204px;
+  background: url("../images/v90_108.png");
+  opacity: 0.30000001192092896;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  border-radius: 50%;
+}
+.active {
+  display: none;
+}
