@@ -61,13 +61,41 @@
   font-weight: regular;
   font-size: 40px;
   color: white;
-  background-color: red;
-  padding: 50px;
-  border-radius: 5px;
+  background-color: rgb(189, 0, 0);
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 15px;
   top: 30vh;
   left: 30vw;
 }
-
+#ageInput .input {
+  position: relative;
+  font-family: Bebas Neue;
+  font-weight: regular;
+  width: 5vw;
+  font-size: 30px;
+  top: 42vh;
+  left: 8.5vw;
+  background-color: rgb(51, 49, 49);
+  color: white;
+  outline: none;
+}
+#ageInput .submit {
+  position: relative;
+  font-family: Bebas Neue;
+  font-weight: regular;
+  top: 42vh;
+  left: 10vw;
+  border: none;
+  background-color: red;
+  border-radius: 40px;
+  color: white;
+}
+#ageInput .submit:hover {
+  background-color: rgb(121, 0, 0);
+}
 #timeFrame {
   width: 100vw;
   height: 100vh;
