@@ -1,26 +1,23 @@
 * {
   box-sizing: border-box;
+  background-color: black;
 }
 
 #home {
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
   display: none;
 }
 #home.active {
   display: block;
 }
-#home h1 {
-  position: relative;
-  top: 30vh;
+h1 {
   font-family: Bebas Neue;
-  font-weight: regular;
   color: white;
   font-size: 40px;
+  margin-top: 250px;
   text-align: center;
 }
 #home #getStarted {
+  font-family: Bebas Neue;
   border: none;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -29,12 +26,11 @@
   background-color: red;
   border-radius: 40px;
   color: white;
-  position: relative;
-  font-family: Bebas Neue;
-  font-weight: regular;
   font-size: 30px;
-  top: 35vh;
-  left: 45vw;
+  margin-left: 650px;
+}
+#home #getStarted:hover {
+  background-color: rgb(121, 0, 0);
 }
 .imageCercle {
   width: 204px;
@@ -42,64 +38,47 @@
   background: url("../images/v90_108.png");
   opacity: 0.30000001192092896;
   position: absolute;
-  top: 50vh;
-  left: 50vw;
+  top: 50px;
+  left: 50px;
   border-radius: 50%;
 }
+.imageCercle:hover {
+  width: 250px;
+  height: 250px;
+
+  border-radius: 0%;
+  background: none;
+  background-color: gray;
+}
 #ageInput {
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
   display: none;
 }
+
 #ageInput.active {
   display: block;
 }
-#ageInput label {
-  position: relative;
-  font-family: Bebas Neue;
-  font-weight: regular;
-  font-size: 40px;
-  color: white;
-  background-color: rgb(189, 0, 0);
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-radius: 15px;
-  top: 30vh;
-  left: 30vw;
-}
+
 #ageInput .input {
-  position: relative;
   font-family: Bebas Neue;
-  font-weight: regular;
-  width: 5vw;
+  width: 80px;
   font-size: 30px;
-  top: 42vh;
-  left: 8.5vw;
   background-color: rgb(51, 49, 49);
   color: white;
   outline: none;
+  margin-left: 670px;
 }
 #ageInput .submit {
-  position: relative;
-  font-family: Bebas Neue;
-  font-weight: regular;
-  top: 42vh;
-  left: 10vw;
   border: none;
   background-color: red;
   border-radius: 40px;
   color: white;
+  margin-left: 20px;
 }
 #ageInput .submit:hover {
   background-color: rgb(121, 0, 0);
 }
+
 #timeFrame {
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
   display: none;
 }
 #timeFrame.active {
