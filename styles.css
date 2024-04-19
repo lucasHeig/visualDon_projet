@@ -32,6 +32,12 @@ h1 {
 #home #getStarted:hover {
   background-color: rgb(121, 0, 0);
 }
+
+
+/* div.image:hover{
+  background: none;
+  background-color: red;
+} */
 #ageInput {
   display: none;
 }
