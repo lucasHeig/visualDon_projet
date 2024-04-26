@@ -1,8 +1,7 @@
 /* style pour le bubble chart */
 body {
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    background-color: #111;
     /* background-color: #1C88C7;   */
   }
   
