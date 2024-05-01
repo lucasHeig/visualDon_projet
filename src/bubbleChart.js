@@ -43,6 +43,7 @@ const generateChart = (data) => {
   node.each(function (d) {
     // console.log("salut");
     const circleElement = document.createElement("div");
+
     const circleWidth = d.r * 2; // Assuming 'd.r' is the radius of the circle
     const imageSrc = d.data.ImageSrc; // Assuming 'd.data.ImageSrc' is the image source
 
@@ -56,6 +57,8 @@ const generateChart = (data) => {
     circleElement.style.left = `${d.x - circleWidth / 2}px`; // Adjust the left position
     circleElement.style.top = `${d.y - circleWidth / 2}px`; // Adjust the top position
     circleElement.style.opacity = "0";
+
+
     //   circleElement.style.margin = "10px";
     console.log(circleElement);
     // Append the circleElement to the SVG container
@@ -75,6 +78,7 @@ const generateChart = (data) => {
     circleElement.addEventListener("mouseover", (e) => {
       tooltip.select("img").attr("src", d.data.ImageSrc);
       tooltip.select("a").attr("href", d.data.href).text(d.data.Name);
+      // select(circleElement).style("width", "100px").style("height", "100px");
       tooltip
         .select("span")
         .attr("class", d.data.Description)
@@ -83,6 +87,7 @@ const generateChart = (data) => {
       tooltip.style("top", `${e.pageY}px`).style("left", `${e.pageX + 10}px`);
     });
     circleElement.addEventListener("mouseout", () => {
+      // select(circleElement).style("width", `${(circleWidth - 7.8) * 0.9}px` ).style("height",  `${(circleWidth - 7.8) * 0.9}px`);
       return tooltip.style("visibility", "hidden");
     });
   });
