@@ -30,21 +30,21 @@ h1 {
   margin-left: 650px;
 }
 
- #home #getStarted:hover{
+#home #getStarted:hover {
   background-color: rgb(121, 0, 0);
- }
- #stopButton {
-  position: fixed; 
-  bottom: 20px; 
-  right: 20px; 
+}
+#stopButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   z-index: 1000;
- }
- #playButton {
-  position: fixed; 
-  bottom: 20px; 
-  right: 80px; 
+}
+#playButton {
+  position: fixed;
+  bottom: 20px;
+  right: 80px;
   z-index: 1000;
- }
+}
 
 /* div.image:hover{
   background: none;
@@ -74,13 +74,20 @@ button {
   color: white;
   margin-left: 20px;
 }
-button:hover{
+button:hover {
   background-color: rgb(121, 0, 0);
 }
 
 #bubblesButton {
   width: 250px;
-  padding-right: 200px;
+  border: none;
+  border-radius: 40px;
+  padding: 20px;
+  margin-right: 200px;
+  color: white;
+  top: 280px;
+  position: absolute;
+  font-size: 20px;
 }
 
 #timeFrame {
@@ -136,7 +143,7 @@ span {
 
   position: absolute;
   visibility: hidden;
-  background-color:white;
+  background-color: white;
   /* display: flex; */
   font-family: sans-serif;
   /* max-width: 500px; */
@@ -150,7 +157,7 @@ span {
 }
 
 .serie-info {
-border-radius: 10px;
+  border-radius: 10px;
   background-color: white;
   padding: 15px;
 }
@@ -184,11 +191,11 @@ border-radius: 10px;
 .serie-date {
   background-color: white;
   margin-right: 10px;
-  color: black
+  color: black;
 }
 
 .serie-note {
-background-color: white;
+  background-color: white;
   font-size: 14px;
   color: rgb(255, 213, 0);
 }
