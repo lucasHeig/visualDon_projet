@@ -34,16 +34,22 @@ h1 {
   background-color: rgb(121, 0, 0);
 }
 #stopButton {
+  width: 150px;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 50px;
+  left: 680px;
   z-index: 1000;
+  font-size: 20px;
+  padding: 10px
 }
 #playButton {
+  width: 150px;
   position: fixed;
-  bottom: 20px;
-  right: 80px;
+  bottom: 50px;
+  left: 680px;
   z-index: 1000;
+  font-size: 20px;
+  padding: 10px
 }
 
 /* div.image:hover{

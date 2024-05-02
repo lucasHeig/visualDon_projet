@@ -216,6 +216,7 @@ select("#start").on("click", () => {
     x = x + 400;
     const serie = newTab[year];
     newCircle(200, 200, serie, 200, x - 200);
+
   }
   select(graphButton).style("left", `${x + 400}px`);
   const timelineElement = document.createElement("div");
@@ -244,8 +245,9 @@ select("#start").on("click", () => {
     .style("background-color", "black")
     .style("position", "absolute")
     .style("left", `${x + 600}px`);
+    startAnimation(x + 400);
   timeframeSection.appendChild(lastBlock);
-select("#stopButton").style("visibility", "hidden");
+select("#playButton").style("visibility", "hidden");
 select("#stopButton").on("click", () => {
   stopAnimation();
   select("#playButton").style("visibility", "visible");
