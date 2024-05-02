@@ -38,7 +38,7 @@ h1 {
   position: fixed;
   bottom: 50px;
   left: 680px;
-  z-index: 1000;
+  z-index: 9;
   font-size: 20px;
   padding: 10px
 }
@@ -47,7 +47,7 @@ h1 {
   position: fixed;
   bottom: 50px;
   left: 680px;
-  z-index: 1000;
+  z-index: 9;
   font-size: 20px;
   padding: 10px
 }

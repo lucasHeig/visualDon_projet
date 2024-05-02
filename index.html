@@ -26,31 +26,30 @@
       <button id="start">Voir les séries</button>
     </section>
     <section id="timeFrame">
-      <!-- <div class="tooltip">
-        <img alt="" />
-        <div>
-            <a></a>
-            <span></span>
-        </div>
-    </div> -->
       <button id="stopButton">Stop</button>
       <button id="playButton">Play</button>
 
-      <div class="serie-card">
-        <img src="" alt="Image de la série" class="serie-image" />
-        <div class="serie-info">
-          <h2 class="serie-title"></h2>
-          <p class="serie-description"></p>
-          <div class="serie-details">
-            <span class="serie-date"></span>
-            <span class="serie-note"></span>
-          </div>
-        </div>
+      
       </div>
 
       <button id="bubblesButton">Voir toutes les séries</button>
     </section>
+<section id="bubbleGraph">
 
+  <div id="bubbleChart"></div>
+  <div class="serie-card">
+    <img src="" alt="Image de la série" class="serie-image" />
+    <div class="serie-info">
+      <h2 class="serie-title"></h2>
+      <p class="serie-description"></p>
+      <div class="serie-details">
+        <span class="serie-date"></span>
+        <span class="serie-note"></span>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://d3js.org/d3.v6.js"></script>
     <script type="module" src="/src/index.js"></script>
   </body>
 </html>
