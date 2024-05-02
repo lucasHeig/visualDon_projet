@@ -1,4 +1,3 @@
-import dataBase from "../data/IMDB.csv";
 import { select } from "d3-selection";
 import { transition } from "d3-transition";
 import { scalePow } from "d3-scale";
@@ -6,7 +5,7 @@ import { hierarchy } from "d3-hierarchy";
 import {
   createCircle,
   createShowCard,
-} from "./timeline";
+} from "./shows";
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -64,7 +63,6 @@ export const generateBubbleGraph = (data) => {
       createShowCard(d.data, e);
     });
     circleElement.addEventListener("mouseout", () => {
-      // select(circleElement).style("width", `${(circleWidth - 7.8) * 0.9}px` ).style("height",  `${(circleWidth - 7.8) * 0.9}px`);
       return showCard.style("visibility", "hidden");
     });
   });

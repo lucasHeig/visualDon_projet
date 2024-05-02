@@ -2,7 +2,8 @@ import dataBase from "../data/IMDB.csv";
 import { select } from "d3-selection";
 import { transition } from "d3-transition";
 import { timer } from "d3-timer";
-import { createCircle, createTimeLine, createtimeLineDate } from "./timeline";
+import { createTimeLine, createtimeLineDate } from "./timeline";
+import { createCircle } from "./shows";
 import { generateBubbleGraph } from "./bubbleGraph";
 
 const currentYear = 2024;
@@ -16,72 +17,7 @@ const input = document.querySelector(".input");
 const timeframeSection = document.querySelector("#timeFrame");
 
 let animationId;
-// createCircle(
-//   50,
-//   50,
-//   dataBase[0].ImageSrc,
-//   150,
-//   250,
-//   200,
-//   350,
-//   500,
-//   getTvShowName(dataBase[0].Name)
-// );
-// createCircle(
-//   250,
-//   250,
-//   dataBase[4].ImageSrc,
-//   300,
-//   250,
-//   200,
-//   1250,
-//   900,
-//   getTvShowName(dataBase[4].Name)
-// );
-// createCircle(
-//   50,
-//   50,
-//   dataBase[5].ImageSrc,
-//   800,
-//   150,
-//   100,
-//   950,
-//   900,
-//   getTvShowName(dataBase[25].Name)
-// );
-
-// function createCircle(
-//   circleWidth,
-//   cirleHeight,
-//   imageSrc,
-//   topPositionStart,
-//   leftPositionStart,
-//   topPositionEnd,
-//   leftPositionEnd,
-//   animationDuration
-// ) {
-//   const circleElement = document.createElement("div");
-
-//   // Appliquez les styles CSS pour créer un cercle
-//   select(circleElement)
-//     .style("width", `${circleWidth}px`)
-//     .style("height", `${cirleHeight}px`)
-//     .style("border-radius", "50%")
-//     .style("background", `url(${imageSrc})`)
-//     .style("background-size", "cover")
-//     .style("background-position", "center")
-//     .style("position", `absolute`)
-//     .style("top", `${topPositionStart}px`)
-//     .style("left", `${leftPositionStart}px`)
-//     .style("opacity", "0")
-//     .transition()
-//     .duration(animationDuration)
-//     .style("opacity", 1.0)
-//     .style("top", `${topPositionEnd}px`)
-//     .style("left", `${leftPositionEnd}px`);
-//   // Ajoutez l'élément au corps du document
-//   homeSection.appendChild(circleElement);
-// }
+const nbCircles = 250;
 const sortShows = (year) => {
   const filteredSeries = dataBase.filter(
     (serie) => parseInt(serie.Year.split("-")[0]) >= year
@@ -154,6 +90,7 @@ select("#start").on("click", () => {
     x = x + 400;
     const show = newTab[year];
    ;
+   
     timeframeSection.appendChild( createCircle(200, 200, show, 200, x - 200));
     createtimeLineDate(show, 200, x - 200);
   }
@@ -177,6 +114,5 @@ select("#start").on("click", () => {
 select("#bubblesButton").on("click", () => {
   timeframeSection.classList.remove("active");
   bubbleGraphSection.classList.add("active");
-  const nbCircles = 250;
   generateBubbleGraph(dataBase.slice(0, nbCircles));
 });
