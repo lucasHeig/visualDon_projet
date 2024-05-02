@@ -59,11 +59,11 @@ export const generateBubbleGraph = (data) => {
     });
     select(circleElement).transition().duration(5000).style("opacity", 1.0);
 
-    circleElement.addEventListener("mouseover", (e) => {
-      createShowCard(d.data, e);
-    });
-    circleElement.addEventListener("mouseout", () => {
-      return showCard.style("visibility", "hidden");
-    });
+    // circleElement.addEventListener("mouseover", (e) => {
+    // //   createShowCard(d.data, e);
+    // });
+    // circleElement.addEventListener("mouseout", () => {
+    //   return showCard.style("visibility", "hidden");
+    // });
   });
 };

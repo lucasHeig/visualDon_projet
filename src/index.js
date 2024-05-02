@@ -89,9 +89,7 @@ select("#start").on("click", () => {
   for (const year in newTab) {
     x = x + 400;
     const show = newTab[year];
-   ;
-   
-    timeframeSection.appendChild( createCircle(200, 200, show, 200, x - 200));
+    timeframeSection.appendChild(createCircle(200, 200, show, 200, x - 200));
     createtimeLineDate(show, 200, x - 200);
   }
   select(graphButton).style("left", `${x + 400}px`);
@@ -116,3 +114,41 @@ select("#bubblesButton").on("click", () => {
   bubbleGraphSection.classList.add("active");
   generateBubbleGraph(dataBase.slice(0, nbCircles));
 });
+
+// createCircle(200, 200, dataBase[0], 200, 200);
+const circles = [
+  {
+    name: "circle1",
+    circle: createCircle(200, 200, dataBase[0], 200, 200, false),
+    newPosition: [600, 50],
+  },
+  {
+    name: "circle2",
+    circle: createCircle(300, 300, dataBase[1], 200, 400, false),
+    newPosition: [20, 0],
+  },
+  {
+    name: "circle3",
+    circle: createCircle(150, 150, dataBase[2], 200, 600, false),
+    newPosition: [380, 50],
+  },
+  {
+    name: "circle4",
+    circle: createCircle(100, 100, dataBase[3], 200, 800, false),
+    newPosition: [0, 500],
+  },
+];
+circles.forEach((show) => {
+  homeSection.appendChild(show.circle);
+  select(show.circle)
+    .style("opacity", 0.0)
+    .transition()
+    .duration(2000)
+    .style("opacity", 0.5)
+    .style("top", `${show.newPosition[1]}px`) // Position verticale finale
+    .style("left", `${show.newPosition[0]}px`);
+});
+// const circle = createCircle(200, 200, dataBase[0], -100, -100, false);
+// select(circle).style("opacity", 0.0).transition().duration(5000).style("opacity", 0.5).style("top", "300px").style("left", "450px");
+
+// homeSection.appendChild(circle);

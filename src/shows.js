@@ -32,7 +32,7 @@ export function createCircle(
   cirleHeight,
   show,
   topPosition,
-  leftPosition
+  leftPosition, card = true
 ) {
   const circleElement = document.createElement("div");
 
@@ -48,11 +48,14 @@ export function createCircle(
     .style("top", `${topPosition}px`)
     .style("left", `${leftPosition}px`)
     .style("opacity", "1");
-  circleElement.addEventListener("mouseover", (e) => {
-    createShowCard(show, e);
-  });
-  circleElement.addEventListener("mouseout", () => {
-    showCard.style("visibility", "hidden");
-  });
+if (card) {
+    circleElement.addEventListener("mouseover", (e) => {
+        createShowCard(show, e);
+      });
+      circleElement.addEventListener("mouseout", () => {
+        showCard.style("visibility", "hidden");
+      });
+}
+  
   return circleElement;
 }
