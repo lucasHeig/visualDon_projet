@@ -5,6 +5,7 @@ import { timer } from "d3-timer";
 import { createTimeLine, createtimeLineDate } from "./timeline";
 import { createCircle } from "./shows";
 import { generateBubbleGraph } from "./bubbleGraph";
+import { count } from "d3-array";
 
 const currentYear = 2024;
 
@@ -115,40 +116,64 @@ select("#bubblesButton").on("click", () => {
   generateBubbleGraph(dataBase.slice(0, nbCircles));
 });
 
-// createCircle(200, 200, dataBase[0], 200, 200);
 const circles = [
   {
     name: "circle1",
-    circle: createCircle(200, 200, dataBase[0], 200, 200, false),
-    newPosition: [600, 50],
+    circle: createCircle(200, 200, dataBase[0], 0, 0, false),
+    newPosition: [],
   },
   {
     name: "circle2",
-    circle: createCircle(300, 300, dataBase[1], 200, 400, false),
-    newPosition: [20, 0],
+    circle: createCircle(180, 180, dataBase[1], 0, 0, false),
+    newPosition: [],
   },
   {
     name: "circle3",
-    circle: createCircle(150, 150, dataBase[2], 200, 600, false),
-    newPosition: [380, 50],
+    circle: createCircle(150, 150, dataBase[2], 0, 0, false),
+
+    newPosition: [],
   },
   {
     name: "circle4",
-    circle: createCircle(100, 100, dataBase[3], 200, 800, false),
-    newPosition: [0, 500],
+    circle: createCircle(100, 100, dataBase[3], 0, 0, false),
+    newPosition: [],
+  },
+  {
+    name: "circle5",
+    circle: createCircle(80, 80, dataBase[4], 0, 0, false),
+    newPosition: [],
+  },
+  {
+    name: "circle6",
+    circle: createCircle(50, 50, dataBase[5], 0, 0, false),
+    newPosition: [],
+  },
+  {
+    name: "circle7",
+    circle: createCircle(120, 120, dataBase[6], 0, 0, false),
+    newPosition: [],
   },
 ];
-circles.forEach((show) => {
-  homeSection.appendChild(show.circle);
-  select(show.circle)
+
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
+
+let topPosition = 0;
+let leftPosition = 0;
+
+circles.forEach((circle) => {
+  const topDiff = windowHeight / 8;
+  const leftDiff = windowWidth / 8;
+  topPosition += topDiff;
+  leftPosition += leftDiff;
+circle.newPosition = [leftPosition, topPosition];
+  homeSection.appendChild(circle.circle);
+  select(circle.circle)
     .style("opacity", 0.0)
     .transition()
     .duration(2000)
     .style("opacity", 0.5)
-    .style("top", `${show.newPosition[1]}px`) // Position verticale finale
-    .style("left", `${show.newPosition[0]}px`);
+    .style("top", `${circle.newPosition[1]}px`)
+    .style("left", `${circle.newPosition[0]}px`);
 });
-// const circle = createCircle(200, 200, dataBase[0], -100, -100, false);
-// select(circle).style("opacity", 0.0).transition().duration(5000).style("opacity", 0.5).style("top", "300px").style("left", "450px");
 
-// homeSection.appendChild(circle);
