@@ -205,3 +205,7 @@ span {
   font-size: 14px;
   color: rgb(255, 213, 0);
 }
+
+#bubbleGraph div {
+  cursor: pointer;
+}
