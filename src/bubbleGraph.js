@@ -1,7 +1,7 @@
 import { select } from "d3-selection";
 import { transition } from "d3-transition";
 import { scalePow } from "d3-scale";
-import { hierarchy } from "d3-hierarchy";
+// import { hierarchy } from "d3-hierarchy";
 import { createCircle } from "./shows";
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -18,7 +18,7 @@ export const generateBubbleGraph = (data) => {
     d3
       .pack()
       .size([width, height]) // size of the graphic
-      .padding(2)(
+      .padding(0.5)(
       d3
         .hierarchy({ children: data })
         .sum((d) => parseFloat(radiuScale(d.Rating)))
