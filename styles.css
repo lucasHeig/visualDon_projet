@@ -10,6 +10,7 @@
   display: block;
 }
 h1 {
+  z-index: 11;
   font-family: Bebas Neue;
   color: white;
   font-size: 40px;
@@ -17,6 +18,7 @@ h1 {
   text-align: center;
 }
 #home #getStarted {
+  z-index: 11;
   font-family: Bebas Neue;
   border: none;
   padding-top: 5px;
@@ -34,6 +36,7 @@ h1 {
   background-color: rgb(121, 0, 0);
 }
 #stopButton {
+
   width: 150px;
   position: fixed;
   bottom: 50px;
@@ -43,6 +46,7 @@ h1 {
   padding: 10px
 }
 #playButton {
+
   width: 150px;
   position: fixed;
   bottom: 50px;
@@ -74,6 +78,7 @@ h1 {
   margin-left: 670px;
 }
 button {
+  font-family: Bebas Neue;
   border: none;
   background-color: red;
   border-radius: 40px;
@@ -208,4 +213,14 @@ span {
 
 #bubbleGraph div {
   cursor: pointer;
+}
+#backButton {
+  width: 100px;
+  position: fixed;
+  top: 10px;
+  left: 0px;
+  font-family: Bebas Neue;
+  font-size: 20px;
+  padding: 10px;
+  /* visibility: hidden; */
 }

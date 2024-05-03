@@ -1,8 +1,16 @@
 import { select } from "d3-selection";
 import { transition } from "d3-transition";
 const showCard = select(".serie-card");
-
+function getTop(eventY){
+    if(eventY>window.innerHeight-380){
+        showCard.style("top", `${eventY - 300}px`);
+    } else{
+        showCard.style("top", `${eventY}px`);
+    
+    }
+}
 export function createShowCard(show, e) {
+
   showCard
     .select("img")
     .attr("src", show.ImageSrc)
@@ -14,7 +22,7 @@ export function createShowCard(show, e) {
     .text(`${getShowYear(show.Year)[0]} - ${getShowYear(show.Year)[1]}`);
   showCard.select(".serie-note").text(`${show.Rating}/10 ★`);
   showCard.style("visibility", "visible");
-  showCard.style("top", `${e.pageY}px`).style("left", `${e.pageX + 10}px`);
+  showCard.style("top", `${getTop(e.pageY)}px`).style("left", `${e.pageX + 10}px`);
 }
 export function getShowYear(showYear) {
   const tabYear = showYear.split("–");
