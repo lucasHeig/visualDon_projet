@@ -46,10 +46,10 @@ const sortShows = (year) => {
   // console.log(bestSeriesByYear);
   return bestSeriesByYear;
 };
-function startScroll(distance, start = window.scrollX) {
+function startScroll(distance, start = window.scrollX, speed = 1) {
   // const start = window.scrollX;
   const end = distance;
-  const duration = (distance * 15000) / windowWidth; // Durée de l'animation en millisecondes
+  const duration = (distance * 15000) / windowWidth / speed; // Durée de l'animation en millisecondes
   const startTime = performance.now();
   function animateScroll(currentTime) {
     const elapsed = currentTime - startTime;
@@ -58,7 +58,6 @@ function startScroll(distance, start = window.scrollX) {
     const scrollPosition = start + (end - start) * progress;
 
     window.scrollTo(scrollPosition, 0);
-    console.log(progress);
 
     if (progress < 1) {
       animationId = requestAnimationFrame(animateScroll);
@@ -66,6 +65,8 @@ function startScroll(distance, start = window.scrollX) {
       select("#replayButton").style("visibility", "visible");
       select("#stopButton").style("visibility", "hidden");
       select("#playButton").style("visibility", "hidden");
+      select("#speedButton").style("visibility", "hidden").style("background-color", "red");
+      select("#renderEnd").style("visibility", "hidden");
     }
   }
 
@@ -77,6 +78,7 @@ function stopScroll() {
     animationId = null;
     select("#stopButton").style("visibility", "hidden");
     select("#playButton").style("visibility", "visible");
+
   }
 }
 select("#getStarted").on("click", () => {
@@ -125,32 +127,79 @@ select("#start").on("click", () => {
   }
   select(graphButton).style("left", `${x + 400}px`);
   createTimeLine(x);
+  let isToggle; // Start with the button in blue
+  if (age > 2) {
+    startScroll(x - 700);
+    select("#playButton").style("visibility", "hidden");
+    select("#replayButton").style("visibility", "hidden");
+    select("#stopButton").style("visibility", "visible");
+    select("#speedButton").style("visibility", "visible");
+    select("#renderEnd").style("visibility", "visible");
+isToggle = false
+    
+  } else {
+    select("#playButton").style("visibility", "hidden");
+    select("#replayButton").style("visibility", "hidden");
+    select("#stopButton").style("visibility", "hidden");
+    select("#speedButton").style("visibility", "hidden");
+  }
 
-  startScroll(x - 700);
-
-  select("#playButton").style("visibility", "hidden");
-  select("#replayButton").style("visibility", "hidden");
   select("#stopButton").on("click", () => {
     stopScroll();
+    isToggle = false;
+    select("#speedButton").style("visibility", "hidden");
     // select("#playButton").style("visibility", "visible");
     // select("#stopButton").style("visibility", "hidden");
   });
   select("#playButton").on("click", () => {
     startScroll(x - 700);
+    isToggle = false;
+  
     select("#stopButton").style("visibility", "visible");
     select("#playButton").style("visibility", "hidden");
+    select("#speedButton").style("visibility", "visible").style("background-color", "red");
   });
   select("#replayButton").on("click", () => {
     startScroll(x - 700, 0);
-    select("#replayButton").style("visibility", "hidden");
+select("#replayButton").style("visibility", "hidden");
     select("#stopButton").style("visibility", "visible");
+    select("#renderEnd").style("visibility", "visible");
     select("#playButton").style("visibility", "hidden");
+    select("#speedButton").style("visibility", "visible");
+    isToggle = false;
+  });
+
+  select("#speedButton").on("click", () => {
+    stopScroll();
+    select("#playButton").style("visibility", "hidden");
+    select("#stopButton").style("visibility", "visible");
+
+    // select("#speedButton").style("background-color", "blue");
+    // startScroll(x - 700, undefined, 4);
+
+    if (isToggle) {
+      select("#speedButton").style("background-color", "red");
+      startScroll(x - 700);
+      isToggle = false;
+    } else {
+      select("#speedButton").style("background-color", "blue");
+      startScroll(x - 700, undefined, 4);
+      isToggle = true;
+    }
+  });
+  select("#renderEnd").on("click", () => {
+    stopScroll();
+    window.scrollTo(x-700, 0);
+    select("#speedButton", "#stopButton").style("visibility", "hidden");
+    select("#replayButton").style("visibility", "visible");
+    select("#renderEnd").style("visibility", "hidden");
   });
 });
+
 select("#bubblesButton").on("click", () => {
   stopScroll();
   window.scrollTo(0, 0);
-animationSection.classList.remove("active");
+  animationSection.classList.remove("active");
   timeframeSection.classList.remove("active");
   bubbleGraphSection.classList.add("active");
   generateBubbleGraph(dataBase.slice(0, nbCircles));
@@ -185,7 +234,6 @@ dataBase.slice(0, 100).forEach((data, index) => {
 });
 
 circles.forEach((circle) => {
-
   animationSection.appendChild(circle.circle);
   const x = getRandomInt(windowWidth - 1 * 2, 5);
   const y = getRandomInt(windowHeight - 5 * 2, 5);
