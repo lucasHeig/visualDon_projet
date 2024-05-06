@@ -55,7 +55,8 @@ export function createCircle(
     .style("position", `absolute`)
     .style("top", `${topPosition}px`)
     .style("left", `${leftPosition}px`)
-    .style("opacity", "1");
+    .style("opacity", "1")
+    .style("z-index", "1");
 if (card) {
     circleElement.addEventListener("mouseover", (e) => {
         createShowCard(show, e);
