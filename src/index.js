@@ -7,6 +7,8 @@ import { createCircle } from "./shows";
 import { generateBubbleGraph } from "./bubbleGraph";
 import { count } from "d3-array";
 
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
 const currentYear = 2024;
 
 const homeSection = document.querySelector("#home");
@@ -45,21 +47,26 @@ const sortShows = (year) => {
 };
 function startScroll(distance) {
   const start = window.scrollX;
-  const end = start + distance;
-  const duration = 50000; // Durée de l'animation en millisecondes
+  const end = distance;
+  const duration = ((distance*5000)/windowWidth); // Durée de l'animation en millisecondes
   const startTime = performance.now();
-
   function animateScroll(currentTime) {
     const elapsed = currentTime - startTime;
+ 
     const progress = Math.min(elapsed / duration, 1);
     const scrollPosition = start + (end - start) * progress;
 
-    window.scrollTo(scrollPosition, 0);
+    window.scrollTo(scrollPosition, end);
+    console.log(progress);
 
-    if (progress < 1) {
+    if (progress < 0.8) {
       animationId = requestAnimationFrame(animateScroll);
-    }
+    } else {
+      select("#replayButton").style("visibility", "visible");
+      select("#stopButton").style("visibility", "hidden");
+      select("#playButton").style("visibility", "hidden");
   }
+}
 
   animationId = requestAnimationFrame(animateScroll);
 }
@@ -67,9 +74,12 @@ function stopScroll() {
   if (animationId) {
     cancelAnimationFrame(animationId);
     animationId = null;
+    select("#stopButton").style("visibility", "hidden");
+    select("#playButton").style("visibility", "visible");
   }
 }
 select("#getStarted").on("click", () => {
+  console.log("click");
   homeSection.classList.remove("active");
   timeframeSection.classList.remove("active");
   startSection.classList.add("active");
@@ -99,10 +109,11 @@ select("#start").on("click", () => {
   startScroll(x + 400);
 
   select("#playButton").style("visibility", "hidden");
+  select("#replayButton").style("visibility", "hidden");
   select("#stopButton").on("click", () => {
     stopScroll();
-    select("#playButton").style("visibility", "visible");
-    select("#stopButton").style("visibility", "hidden");
+    // select("#playButton").style("visibility", "visible");
+    // select("#stopButton").style("visibility", "hidden");
   });
   select("#playButton").on("click", () => {
     startScroll(x + 400);
@@ -111,15 +122,13 @@ select("#start").on("click", () => {
   });
 });
 select("#bubblesButton").on("click", () => {
-
   timeframeSection.classList.remove("active");
   bubbleGraphSection.classList.add("active");
   generateBubbleGraph(dataBase.slice(0, nbCircles));
-  select("#backButton").style("visibility", "visible")
+  select("#backButton").style("visibility", "visible");
 });
 select("#backButton").on("click", () => {
   location.reload();
-
 });
 
 const circles = [
@@ -161,9 +170,6 @@ const circles = [
   },
 ];
 
-const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
-
 let topPosition = 0;
 let leftPosition = 0;
 
@@ -172,7 +178,7 @@ circles.forEach((circle) => {
   const leftDiff = windowWidth / 8;
   topPosition += topDiff;
   leftPosition += leftDiff;
-circle.newPosition = [leftPosition, topPosition];
+  circle.newPosition = [leftPosition, topPosition];
   homeSection.appendChild(circle.circle);
   select(circle.circle)
     .style("opacity", 0.0)
@@ -182,4 +188,3 @@ circle.newPosition = [leftPosition, topPosition];
     .style("top", `${circle.newPosition[1]}px`)
     .style("left", `${circle.newPosition[0]}px`);
 });
-
