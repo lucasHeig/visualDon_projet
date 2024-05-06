@@ -70,10 +70,23 @@ function stopScroll() {
   }
 }
 select("#getStarted").on("click", () => {
-  homeSection.classList.remove("active");
-  timeframeSection.classList.remove("active");
-  startSection.classList.add("active");
-  bubbleGraphSection.classList.remove("active");
+    circles.forEach((circle) => {
+      const [x, y] = circle.newPosition;
+      select(circle.circle)
+        .transition()
+        .duration(1000)
+        .style("top", `${y*1.2}px`)
+        .style("left", `${x*3}px`)
+        .style("opacity", 0.5)
+        .on("end", () => {
+          // circle.circle.remove();
+          homeSection.classList.remove("active");
+          timeframeSection.classList.remove("active");
+          startSection.classList.add("active");
+          bubbleGraphSection.classList.remove("active");
+        });
+    });
+  
 });
 
 select("#start").on("click", () => {
@@ -116,64 +129,124 @@ select("#bubblesButton").on("click", () => {
   generateBubbleGraph(dataBase.slice(0, nbCircles));
 });
 
-const circles = [
-  {
-    name: "circle1",
-    circle: createCircle(200, 200, dataBase[0], 0, 0, false),
-    newPosition: [],
-  },
-  {
-    name: "circle2",
-    circle: createCircle(180, 180, dataBase[1], 0, 0, false),
-    newPosition: [],
-  },
-  {
-    name: "circle3",
-    circle: createCircle(150, 150, dataBase[2], 0, 0, false),
 
+// --- animation cercles ---
+function getRandomInt(max, min = 0) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+const circles = [];
+dataBase.slice(0, 100).forEach((data, index) => {
+  const taille = getRandomInt(100, 50);
+  const circle = createCircle(taille, taille, data, getRandomInt(innerWidth, 10), getRandomInt(innerHeight, 10), false);
+  const newCircle = {
+    name: `circle${index + 1}`,
+    circle: circle,
     newPosition: [],
-  },
-  {
-    name: "circle4",
-    circle: createCircle(100, 100, dataBase[3], 0, 0, false),
-    newPosition: [],
-  },
-  {
-    name: "circle5",
-    circle: createCircle(80, 80, dataBase[4], 0, 0, false),
-    newPosition: [],
-  },
-  {
-    name: "circle6",
-    circle: createCircle(50, 50, dataBase[5], 0, 0, false),
-    newPosition: [],
-  },
-  {
-    name: "circle7",
-    circle: createCircle(120, 120, dataBase[6], 0, 0, false),
-    newPosition: [],
-  },
-];
+  };
+  circles.push(newCircle);
+});
+
+console.log(circles);
 
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
 
-let topPosition = 0;
-let leftPosition = 0;
-
-circles.forEach((circle) => {
-  const topDiff = windowHeight / 8;
-  const leftDiff = windowWidth / 8;
-  topPosition += topDiff;
-  leftPosition += leftDiff;
-circle.newPosition = [leftPosition, topPosition];
-  homeSection.appendChild(circle.circle);
-  select(circle.circle)
-    .style("opacity", 0.0)
-    .transition()
-    .duration(2000)
-    .style("opacity", 0.5)
-    .style("top", `${circle.newPosition[1]}px`)
-    .style("left", `${circle.newPosition[0]}px`);
+circles.forEach(circle => {
+  const body = document.querySelector("body");
+  body.appendChild(circle.circle);
+  const x = getRandomInt(windowWidth - 1 * 2, 5);
+  const y = getRandomInt(windowHeight - 5 * 2, 5);
+  circle.newPosition = [x, y];
 });
 
+function animateCircles() {
+  circles.forEach((circle) => {
+    const [x, y] = circle.newPosition;
+    select(circle.circle)
+      .style("opacity", 0.0)
+      .transition()
+      .duration(2000)
+      .style("opacity", 0.5)
+      .style("top", `${y}px`)
+      .style("left", `${x}px`);
+  });
+}
+
+animateCircles();
+
+
+// ------ code Robin ------
+
+// var canvas = document.getElementById('canvas');
+// var c = canvas.getContext('2d');
+
+// canvas.width = window.innerWidth;
+// canvas.height = window.innerHeight;
+
+// function getRandomInt(max) {
+//     return Math.floor(Math.random() * Math.floor(max));
+// }
+
+// const circleImage = new Image();
+// circleImage.src = 'https://m.media-amazon.com/images/M/MV5BYzI0YjYxY2UtNzRjNS00NTZiLTgzMDItNGEzMjU5MmE0ZWJmXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_QL75_UX140_CR0,1,140,207_.jpg';
+
+// function Circle(){
+    
+//     this.radius = getRandomInt(30);
+//     this.originalSize = this.radius;
+//     this.x = Math.random() * (innerWidth - this.radius * 2) + this.radius;
+//     this.y = Math.random() * (innerHeight - this.radius * 2) + this.radius;
+//     this.gradient = Math.random();
+//     this.color = 'rgba('+ getRandomInt(255) +','+ getRandomInt(255) + ','+ getRandomInt(255) + ','+ this.gradient +')';    
+    
+//     // this.style.background = `url(https://m.media-amazon.com/images/M/MV5BYTMxMGY1OGQtZmUzNy00NjhmLTlhNzItZDBiNzhlMTgwZjZlXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_QL75_UX140_CR0,0,140,207_.jpg)`;
+//     // this.style("background-size", "cover");
+//     // this.style("background-position", "center");
+//     this.xVelocity = 0.5 * (Math.random() - Math.random());
+//     this.yVelocity = 0.5 * (Math.random() - Math.random());
+//     this.image = circleImage;
+//     this.draw = function(){
+//         // c.font = 'lighter 80px sans-serif';
+//         // c.fillStyle = '#dedede';
+//         // c.textAlign = 'center';
+//         // c.fillText('Bouncing Bubbles', canvas.width/2, canvas.height/2);
+//         // c.beginPath();
+//         c.arc(this.x,this.y, this.radius, 0, Math.PI*2, false);
+//         // c.strokeStyle = this.color;
+//         // c.stroke();
+//         // c.fillStyle = this.color;
+//         // c.fill();
+//         c.drawImage(this.image, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+
+//         this.update();
+//     }
+//     this.update = function(){
+//         if(this.x + this.radius > innerWidth || this.x - this.radius < 0){
+//             this.xVelocity = -this.xVelocity;
+//         }
+//         if(this.y + this.radius > innerHeight || this.y - this.radius < 0){
+//             this.yVelocity = -this.yVelocity;
+//         }
+//         this.x += this.xVelocity;
+//         this.y += this.yVelocity;
+
+//         this.image.style.borderRadius = '50%';
+//     }
+//     console.log(this);
+// }
+
+// var circleArray = [];
+
+// for(var i = 0; i < 100; i++){
+//     circleArray.push(new Circle());
+// }
+
+// function animate(){
+//     c.clearRect(0,0, innerWidth, innerHeight);
+//     for(var i = 0; i < circleArray.length; i++){
+//         circleArray[i].draw();
+//     }
+//     requestAnimationFrame(animate);
+// }
+// animate();
