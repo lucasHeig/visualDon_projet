@@ -107,7 +107,7 @@ select("#getStarted").on("click", () => {
 
 select("#start").on("click", () => {
   circles.forEach((circle) => {
-    select(circle.circle).transition().duration(2000).style("opacity", 0);
+    select(circle.circle).transition().duration(1000).style("opacity", 0);
   });
   const age = input.value;
   const birthYear = currentYear - age;
@@ -211,12 +211,12 @@ select("#backButton").on("click", () => {
 
 // --- animation cercles ---
 function getRandomInt(max, min = 0) {
-  return Math.floor(Math.random() * Math.floor(max));
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const circles = [];
 dataBase.slice(0, 100).forEach((data, index) => {
-  const taille = getRandomInt(100, 50);
+  const taille = getRandomInt(90, 20);
   const circle = createCircle(
     taille,
     taille,
