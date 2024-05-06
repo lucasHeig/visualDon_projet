@@ -7,11 +7,14 @@ import { createCircle } from "./shows";
 import { generateBubbleGraph } from "./bubbleGraph";
 import { count } from "d3-array";
 
+const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
 const currentYear = 2024;
 
 const homeSection = document.querySelector("#home");
 const startSection = document.querySelector("#ageInput");
 const bubbleGraphSection = document.querySelector("#bubbleGraph");
+const animationSection = document.querySelector("#animationIntroduction");
 
 const graphButton = document.querySelector("#bubblesButton");
 const input = document.querySelector(".input");
@@ -43,21 +46,26 @@ const sortShows = (year) => {
   // console.log(bestSeriesByYear);
   return bestSeriesByYear;
 };
-function startScroll(distance) {
-  const start = window.scrollX;
-  const end = start + distance;
-  const duration = 50000; // Durée de l'animation en millisecondes
+function startScroll(distance, start = window.scrollX) {
+  // const start = window.scrollX;
+  const end = distance;
+  const duration = (distance * 15000) / windowWidth; // Durée de l'animation en millisecondes
   const startTime = performance.now();
-
   function animateScroll(currentTime) {
     const elapsed = currentTime - startTime;
+
     const progress = Math.min(elapsed / duration, 1);
     const scrollPosition = start + (end - start) * progress;
 
     window.scrollTo(scrollPosition, 0);
+    console.log(progress);
 
     if (progress < 1) {
       animationId = requestAnimationFrame(animateScroll);
+    } else {
+      select("#replayButton").style("visibility", "visible");
+      select("#stopButton").style("visibility", "hidden");
+      select("#playButton").style("visibility", "hidden");
     }
   }
 
@@ -67,29 +75,38 @@ function stopScroll() {
   if (animationId) {
     cancelAnimationFrame(animationId);
     animationId = null;
+    select("#stopButton").style("visibility", "hidden");
+    select("#playButton").style("visibility", "visible");
   }
 }
 select("#getStarted").on("click", () => {
-    circles.forEach((circle) => {
-      const [x, y] = circle.newPosition;
-      select(circle.circle)
-        .transition()
-        .duration(1000)
-        .style("top", `${y*1.2}px`)
-        .style("left", `${x*3}px`)
-        .style("opacity", 0.5)
-        .on("end", () => {
-          // circle.circle.remove();
-          homeSection.classList.remove("active");
-          timeframeSection.classList.remove("active");
-          startSection.classList.add("active");
-          bubbleGraphSection.classList.remove("active");
-        });
-    });
-  
+  console.log("click");
+  homeSection.classList.remove("active");
+  timeframeSection.classList.remove("active");
+  startSection.classList.add("active");
+  bubbleGraphSection.classList.remove("active");
+  circles.forEach((circle) => {
+    const [x, y] = circle.newPosition;
+    select(circle.circle)
+      .transition()
+      .duration(1000)
+      .style("top", `${y * 1.2}px`)
+      .style("left", `${x * 3}px`)
+      .style("opacity", 0.5)
+      .on("end", () => {
+        // circle.circle.remove();
+        homeSection.classList.remove("active");
+        timeframeSection.classList.remove("active");
+        startSection.classList.add("active");
+        bubbleGraphSection.classList.remove("active");
+      });
+  });
 });
 
 select("#start").on("click", () => {
+  circles.forEach((circle) => {
+    select(circle.circle).transition().duration(2000).style("opacity", 0);
+  });
   const age = input.value;
   const birthYear = currentYear - age;
   bubbleGraphSection.classList.remove("active");
@@ -109,42 +126,56 @@ select("#start").on("click", () => {
   select(graphButton).style("left", `${x + 400}px`);
   createTimeLine(x);
 
-  startScroll(x + 400);
+  startScroll(x - 700);
 
   select("#playButton").style("visibility", "hidden");
+  select("#replayButton").style("visibility", "hidden");
   select("#stopButton").on("click", () => {
     stopScroll();
-    select("#playButton").style("visibility", "visible");
-    select("#stopButton").style("visibility", "hidden");
+    // select("#playButton").style("visibility", "visible");
+    // select("#stopButton").style("visibility", "hidden");
   });
   select("#playButton").on("click", () => {
-    startScroll(x + 400);
+    startScroll(x - 700);
+    select("#stopButton").style("visibility", "visible");
+    select("#playButton").style("visibility", "hidden");
+  });
+  select("#replayButton").on("click", () => {
+    startScroll(x - 700, 0);
+    select("#replayButton").style("visibility", "hidden");
     select("#stopButton").style("visibility", "visible");
     select("#playButton").style("visibility", "hidden");
   });
 });
 select("#bubblesButton").on("click", () => {
-
+  stopScroll();
+  window.scrollTo(0, 0);
+animationSection.classList.remove("active");
   timeframeSection.classList.remove("active");
   bubbleGraphSection.classList.add("active");
   generateBubbleGraph(dataBase.slice(0, nbCircles));
-  select("#backButton").style("visibility", "visible")
+  select("#backButton").style("visibility", "visible");
 });
 select("#backButton").on("click", () => {
   location.reload();
-
 });
-
 
 // --- animation cercles ---
 function getRandomInt(max, min = 0) {
-    return Math.floor(Math.random() * Math.floor(max));
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 const circles = [];
 dataBase.slice(0, 100).forEach((data, index) => {
   const taille = getRandomInt(100, 50);
-  const circle = createCircle(taille, taille, data, getRandomInt(innerWidth, 10), getRandomInt(innerHeight, 10), false);
+  const circle = createCircle(
+    taille,
+    taille,
+    data,
+    getRandomInt(innerWidth, 10),
+    getRandomInt(innerHeight, 10),
+    false
+  );
   const newCircle = {
     name: `circle${index + 1}`,
     circle: circle,
@@ -153,14 +184,9 @@ dataBase.slice(0, 100).forEach((data, index) => {
   circles.push(newCircle);
 });
 
-console.log(circles);
+circles.forEach((circle) => {
 
-const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
-
-circles.forEach(circle => {
-  const body = document.querySelector("body");
-  body.appendChild(circle.circle);
+  animationSection.appendChild(circle.circle);
   const x = getRandomInt(windowWidth - 1 * 2, 5);
   const y = getRandomInt(windowHeight - 5 * 2, 5);
   circle.newPosition = [x, y];
@@ -181,7 +207,6 @@ function animateCircles() {
 
 animateCircles();
 
-
 // ------ code Robin ------
 
 // var canvas = document.getElementById('canvas');
@@ -198,14 +223,14 @@ animateCircles();
 // circleImage.src = 'https://m.media-amazon.com/images/M/MV5BYzI0YjYxY2UtNzRjNS00NTZiLTgzMDItNGEzMjU5MmE0ZWJmXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_QL75_UX140_CR0,1,140,207_.jpg';
 
 // function Circle(){
-    
+
 //     this.radius = getRandomInt(30);
 //     this.originalSize = this.radius;
 //     this.x = Math.random() * (innerWidth - this.radius * 2) + this.radius;
 //     this.y = Math.random() * (innerHeight - this.radius * 2) + this.radius;
 //     this.gradient = Math.random();
-//     this.color = 'rgba('+ getRandomInt(255) +','+ getRandomInt(255) + ','+ getRandomInt(255) + ','+ this.gradient +')';    
-    
+//     this.color = 'rgba('+ getRandomInt(255) +','+ getRandomInt(255) + ','+ getRandomInt(255) + ','+ this.gradient +')';
+
 //     // this.style.background = `url(https://m.media-amazon.com/images/M/MV5BYTMxMGY1OGQtZmUzNy00NjhmLTlhNzItZDBiNzhlMTgwZjZlXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_QL75_UX140_CR0,0,140,207_.jpg)`;
 //     // this.style("background-size", "cover");
 //     // this.style("background-position", "center");

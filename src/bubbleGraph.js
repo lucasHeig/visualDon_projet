@@ -5,6 +5,7 @@ import { scalePow } from "d3-scale";
 import { createCircle } from "./shows";
 const width = window.innerWidth;
 const height = window.innerHeight;
+
 let timer = 0;
 
 export const generateBubbleGraph = (data) => {
@@ -48,7 +49,7 @@ export const generateBubbleGraph = (data) => {
       -100,
       -100
     );
-    console.log(d.y - circleWidth / 2, d.x - circleWidth / 2);
+    
     select(circleElement).style("opacity", 1);
     svg.node().appendChild(circleElement);
 
