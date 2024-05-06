@@ -3,7 +3,7 @@ import { select } from "d3-selection";
 import { transition } from "d3-transition";
 const timeframeSection = document.querySelector("#timeFrame");
 const lastBlock = document.querySelector("div");
-export function createtimeLineDate(show, topPosition, leftPosition) {
+export function createtimeLineDate(show, topPosition, leftPosition, duration) {
   const showYear = document.createElement("div");
 
   select(showYear)
@@ -13,7 +13,9 @@ export function createtimeLineDate(show, topPosition, leftPosition) {
     .style("position", "absolute")
     .style("top", `${topPosition + 300}px`)
     .style("left", `${leftPosition + 80}px`)
-    .style("font-size", "30px");
+    .style("font-size", "30px")
+    .style("opacity", 0)
+    .transition().duration(duration+100).style("opacity", 1);
 
   timeframeSection.appendChild(showYear);
 }
@@ -25,7 +27,9 @@ export function createTimeLine(timeLineWidth) {
     .style("background-color", "red")
     .style("position", "absolute")
     .style("top", "450px")
-    .style("left", "200px");
+    .style("left", "200px")
+    .style("opacity", "0")
+    .transition().duration(timeLineWidth+1000).style("opacity", "1");
   timeframeSection.appendChild(timelineElement);
   const arrow = document.createElement("div");
   select(arrow)
@@ -35,7 +39,8 @@ export function createTimeLine(timeLineWidth) {
     .style("width", "20px")
     .style("height", "32px")
     .style("background-color", "red")
-    .style("clip-path", "polygon(0 0, 0 100%, 100% 50%)");
+
+    .style("clip-path", "polygon(0 0, 0 100%, 100% 50%)")
   timeframeSection.appendChild(arrow);
   select(lastBlock)
     .style("width", "300px")

@@ -46,6 +46,9 @@ const sortShows = (year) => {
   // console.log(bestSeriesByYear);
   return bestSeriesByYear;
 };
+function getCenterPosition(element) {
+  element.style("bottom", `50px`).style("left", `680px`);
+}
 function startScroll(distance, start = window.scrollX, speed = 1) {
   // const start = window.scrollX;
   const end = distance;
@@ -63,6 +66,7 @@ function startScroll(distance, start = window.scrollX, speed = 1) {
       animationId = requestAnimationFrame(animateScroll);
     } else {
       select("#replayButton").style("visibility", "visible");
+      getCenterPosition(select("#replayButton"));
       select("#stopButton").style("visibility", "hidden");
       select("#playButton").style("visibility", "hidden");
       select("#speedButton").style("visibility", "hidden").style("background-color", "red");
@@ -81,7 +85,9 @@ function stopScroll() {
 
   }
 }
+select("#backButton").style("visibility", "hidden");
 select("#getStarted").on("click", () => {
+  select("#backButton").style("visibility", "visible");
   console.log("click");
   homeSection.classList.remove("active");
   timeframeSection.classList.remove("active");
@@ -107,7 +113,7 @@ select("#getStarted").on("click", () => {
 
 select("#start").on("click", () => {
   circles.forEach((circle) => {
-    select(circle.circle).transition().duration(1000).style("opacity", 0);
+    select(circle.circle).transition().duration(3000).style("opacity", 0);
   });
   const age = input.value;
   const birthYear = currentYear - age;
@@ -122,8 +128,12 @@ select("#start").on("click", () => {
   for (const year in newTab) {
     x = x + 400;
     const show = newTab[year];
-    timeframeSection.appendChild(createCircle(200, 200, show, 200, x - 200));
-    createtimeLineDate(show, 200, x - 200);
+    const circle = createCircle(200, 200, show, 200, x - 200);
+    circle.style.opacity = 0;
+   select(circle).transition().duration(x+1000).style("opacity", 1);
+    timeframeSection.appendChild(circle);
+    createtimeLineDate(show, 200, x - 200, x);
+    // select(timeframeSection).transition().duration(1500).style("opacity", 1);
   }
   select(graphButton).style("left", `${x + 400}px`);
   createTimeLine(x);
@@ -190,7 +200,9 @@ select("#replayButton").style("visibility", "hidden");
   select("#renderEnd").on("click", () => {
     stopScroll();
     window.scrollTo(x-700, 0);
-    select("#speedButton", "#stopButton").style("visibility", "hidden");
+    select("#speedButton").style("visibility", "hidden");
+    select("#playButton").style("visibility", "hidden");
+    select("#stopButton").style("visibility", "hidden");
     select("#replayButton").style("visibility", "visible");
     select("#renderEnd").style("visibility", "hidden");
   });

@@ -80,7 +80,7 @@ button {
   width: 150px;
   position: fixed;
   bottom: 50px;
-  left: 680px;
+  left: 540px;
   z-index: 9;
   font-size: 20px;
   padding: 10px;
@@ -89,7 +89,7 @@ button {
   width: 150px;
   position: fixed;
   bottom: 50px;
-  left: 680px;
+  left: 540px;
   z-index: 9;
   font-size: 20px;
   padding: 10px;
@@ -107,17 +107,20 @@ button {
   width: 70px;
   position: fixed;
   bottom: 50px;
-  left: 850px;
+  left: 710px;
   z-index: 9;
   font-size: 20px;
   padding: 10px;
 
 }
+#speedButton:hover {
+  background-color: rgb(121, 0, 0);
+}
 #renderEnd{
   width: 150px;
   position: fixed;
   bottom: 50px;
-  left: 938px;
+  left: 798px;
   z-index: 9;
   font-size: 20px;
   padding: 10px;
@@ -149,9 +152,11 @@ button:hover {
 
 #timeFrame {
   display: none;
+  
 }
 #timeFrame.active {
   display: block;
+  /* opacity: 0; */
 }
 
 
