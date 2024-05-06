@@ -124,9 +124,15 @@ select("#start").on("click", () => {
   });
 });
 select("#bubblesButton").on("click", () => {
+
   timeframeSection.classList.remove("active");
   bubbleGraphSection.classList.add("active");
   generateBubbleGraph(dataBase.slice(0, nbCircles));
+  select("#backButton").style("visibility", "visible")
+});
+select("#backButton").on("click", () => {
+  location.reload();
+
 });
 
 
