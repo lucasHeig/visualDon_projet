@@ -29,7 +29,7 @@ export function createTimeLine(timeLineWidth) {
     .style("top", "450px")
     .style("left", "200px")
     .style("opacity", "0")
-    .transition().duration(timeLineWidth+1000).style("opacity", "1");
+    .transition().duration(2000).style("opacity", "1");
   timeframeSection.appendChild(timelineElement);
   const arrow = document.createElement("div");
   select(arrow)

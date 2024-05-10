@@ -21,11 +21,16 @@
 #ageInput {
   display: none;
 }
-
+span {
+  position: absolute;
+  top: 360px;
+  left: 645px;
+  font-family: Bebas Neue;
+}
 #ageInput.active {
   display: block;
 }
-#ageInput h1{
+#ageInput h1 {
   font-family: Bebas Neue;
   color: rgb(255, 255, 255);
   top: 200px;
@@ -43,6 +48,7 @@
   width: 80px;
   background-color: black;
   left: 732px;
+  font-family: Bebas Neue;
 }
 
 button {
@@ -63,7 +69,7 @@ button {
   font-size: 20px;
   padding: 10px;
 }
-#start{
+#start {
   width: 150px;
   position: fixed;
   bottom: 300px;
@@ -71,7 +77,6 @@ button {
   font-size: 20px;
   padding: 10px;
 }
-
 
 #home #getStarted:hover {
   background-color: rgb(121, 0, 0);
@@ -94,7 +99,7 @@ button {
   font-size: 20px;
   padding: 10px;
 }
-#replayButton{
+#replayButton {
   width: 150px;
   position: fixed;
   bottom: 50px;
@@ -111,12 +116,11 @@ button {
   z-index: 9;
   font-size: 20px;
   padding: 10px;
-
 }
 #speedButton:hover {
   background-color: rgb(121, 0, 0);
 }
-#renderEnd{
+#renderEnd {
   width: 150px;
   position: fixed;
   bottom: 50px;
@@ -130,9 +134,6 @@ button {
   background: none;
   background-color: red;
 } */
-
-
-
 
 button:hover {
   background-color: rgb(121, 0, 0);
@@ -152,14 +153,11 @@ button:hover {
 
 #timeFrame {
   display: none;
-  
 }
 #timeFrame.active {
   display: block;
   /* opacity: 0; */
 }
-
-
 
 /* .submit:hover {
   background-color: rgb(121, 0, 0);

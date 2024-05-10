@@ -22,8 +22,9 @@
 
     <section id="ageInput">
       <h1>Quel est votre âge ?</h1>
-
-      <input class="input" type="number" name="age" />
+      <label for="number"></label>
+      <input class="input" type="number" name="age" required min="1"/>
+<span class="error-message"></span> 
       <button id="start">Voir les séries</button>
     </section>
     <section id="timeFrame">

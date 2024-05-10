@@ -69,7 +69,9 @@ function startScroll(distance, start = window.scrollX, speed = 1) {
       getCenterPosition(select("#replayButton"));
       select("#stopButton").style("visibility", "hidden");
       select("#playButton").style("visibility", "hidden");
-      select("#speedButton").style("visibility", "hidden").style("background-color", "red");
+      select("#speedButton")
+        .style("visibility", "hidden")
+        .style("background-color", "red");
       select("#renderEnd").style("visibility", "hidden");
     }
   }
@@ -82,7 +84,6 @@ function stopScroll() {
     animationId = null;
     select("#stopButton").style("visibility", "hidden");
     select("#playButton").style("visibility", "visible");
-
   }
 }
 select("#backButton").style("visibility", "hidden");
@@ -112,32 +113,43 @@ select("#getStarted").on("click", () => {
 });
 
 select("#start").on("click", () => {
-  circles.forEach((circle) => {
-    select(circle.circle).transition().duration(3000).style("opacity", 0);
-  });
   const age = input.value;
-  const birthYear = currentYear - age;
-  bubbleGraphSection.classList.remove("active");
-  homeSection.classList.remove("active");
-  timeframeSection.classList.add("active");
-  startSection.classList.remove("active");
 
-  const newTab = sortShows(birthYear);
-  let x = 0;
-
-  for (const year in newTab) {
-    x = x + 400;
-    const show = newTab[year];
-    const circle = createCircle(200, 200, show, 200, x - 200);
-    circle.style.opacity = 0;
-   select(circle).transition().duration(x+1000).style("opacity", 1);
-    timeframeSection.appendChild(circle);
-    createtimeLineDate(show, 200, x - 200, x);
-    // select(timeframeSection).transition().duration(1500).style("opacity", 1);
-  }
-  select(graphButton).style("left", `${x + 400}px`);
-  createTimeLine(x);
-  let isToggle; // Start with the button in blue
+  if (age<1 || age>100 || isNaN(age)) {
+    console.log("Please enter a valid age");
+select(".error-message").text("veuillez entrer un âge valide, entre 1 et 100 ans. Merci!");
+  } else {
+    circles.forEach((circle) => {
+      select(circle.circle).transition().duration(3000).style("opacity", 0);
+    });
+    console.log(input.value);
+  
+    const birthYear = currentYear - age;
+    bubbleGraphSection.classList.remove("active");
+    homeSection.classList.remove("active");
+    timeframeSection.classList.add("active");
+    startSection.classList.remove("active");
+  
+    const newTab = sortShows(birthYear);
+    let x = 0;
+  
+    for (const year in newTab) {
+      x = x + 400;
+      const show = newTab[year];
+      const circle = createCircle(200, 200, show, 200, x - 200);
+      circle.style.opacity = 0;
+      select(circle)
+        .transition()
+        .duration(x + 1000)
+        .style("opacity", 1);
+      timeframeSection.appendChild(circle);
+      createtimeLineDate(show, 200, x - 200, x);
+      // select(timeframeSection).transition().duration(1500).style("opacity", 1);
+    }
+    select(graphButton).style("left", `${x + 400}px`);
+    createTimeLine(x);
+      
+  let isToggle; 
   if (age > 2) {
     startScroll(x - 700);
     select("#playButton").style("visibility", "hidden");
@@ -145,9 +157,9 @@ select("#start").on("click", () => {
     select("#stopButton").style("visibility", "visible");
     select("#speedButton").style("visibility", "visible");
     select("#renderEnd").style("visibility", "visible");
-isToggle = false
-    
+    isToggle = false;
   } else {
+    select("#renderEnd").style("visibility", "hidden");
     select("#playButton").style("visibility", "hidden");
     select("#replayButton").style("visibility", "hidden");
     select("#stopButton").style("visibility", "hidden");
@@ -164,14 +176,16 @@ isToggle = false
   select("#playButton").on("click", () => {
     startScroll(x - 700);
     isToggle = false;
-  
+
     select("#stopButton").style("visibility", "visible");
     select("#playButton").style("visibility", "hidden");
-    select("#speedButton").style("visibility", "visible").style("background-color", "red");
+    select("#speedButton")
+      .style("visibility", "visible")
+      .style("background-color", "red");
   });
   select("#replayButton").on("click", () => {
     startScroll(x - 700, 0);
-select("#replayButton").style("visibility", "hidden");
+    select("#replayButton").style("visibility", "hidden");
     select("#stopButton").style("visibility", "visible");
     select("#renderEnd").style("visibility", "visible");
     select("#playButton").style("visibility", "hidden");
@@ -199,13 +213,15 @@ select("#replayButton").style("visibility", "hidden");
   });
   select("#renderEnd").on("click", () => {
     stopScroll();
-    window.scrollTo(x-700, 0);
+    window.scrollTo(x - 700, 0);
     select("#speedButton").style("visibility", "hidden");
     select("#playButton").style("visibility", "hidden");
     select("#stopButton").style("visibility", "hidden");
     select("#replayButton").style("visibility", "visible");
     select("#renderEnd").style("visibility", "hidden");
   });
+  }
+
 });
 
 select("#bubblesButton").on("click", () => {
@@ -266,78 +282,3 @@ function animateCircles() {
 }
 
 animateCircles();
-
-// ------ code Robin ------
-
-// var canvas = document.getElementById('canvas');
-// var c = canvas.getContext('2d');
-
-// canvas.width = window.innerWidth;
-// canvas.height = window.innerHeight;
-
-// function getRandomInt(max) {
-//     return Math.floor(Math.random() * Math.floor(max));
-// }
-
-// const circleImage = new Image();
-// circleImage.src = 'https://m.media-amazon.com/images/M/MV5BYzI0YjYxY2UtNzRjNS00NTZiLTgzMDItNGEzMjU5MmE0ZWJmXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_QL75_UX140_CR0,1,140,207_.jpg';
-
-// function Circle(){
-
-//     this.radius = getRandomInt(30);
-//     this.originalSize = this.radius;
-//     this.x = Math.random() * (innerWidth - this.radius * 2) + this.radius;
-//     this.y = Math.random() * (innerHeight - this.radius * 2) + this.radius;
-//     this.gradient = Math.random();
-//     this.color = 'rgba('+ getRandomInt(255) +','+ getRandomInt(255) + ','+ getRandomInt(255) + ','+ this.gradient +')';
-
-//     // this.style.background = `url(https://m.media-amazon.com/images/M/MV5BYTMxMGY1OGQtZmUzNy00NjhmLTlhNzItZDBiNzhlMTgwZjZlXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_QL75_UX140_CR0,0,140,207_.jpg)`;
-//     // this.style("background-size", "cover");
-//     // this.style("background-position", "center");
-//     this.xVelocity = 0.5 * (Math.random() - Math.random());
-//     this.yVelocity = 0.5 * (Math.random() - Math.random());
-//     this.image = circleImage;
-//     this.draw = function(){
-//         // c.font = 'lighter 80px sans-serif';
-//         // c.fillStyle = '#dedede';
-//         // c.textAlign = 'center';
-//         // c.fillText('Bouncing Bubbles', canvas.width/2, canvas.height/2);
-//         // c.beginPath();
-//         c.arc(this.x,this.y, this.radius, 0, Math.PI*2, false);
-//         // c.strokeStyle = this.color;
-//         // c.stroke();
-//         // c.fillStyle = this.color;
-//         // c.fill();
-//         c.drawImage(this.image, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
-
-//         this.update();
-//     }
-//     this.update = function(){
-//         if(this.x + this.radius > innerWidth || this.x - this.radius < 0){
-//             this.xVelocity = -this.xVelocity;
-//         }
-//         if(this.y + this.radius > innerHeight || this.y - this.radius < 0){
-//             this.yVelocity = -this.yVelocity;
-//         }
-//         this.x += this.xVelocity;
-//         this.y += this.yVelocity;
-
-//         this.image.style.borderRadius = '50%';
-//     }
-//     console.log(this);
-// }
-
-// var circleArray = [];
-
-// for(var i = 0; i < 100; i++){
-//     circleArray.push(new Circle());
-// }
-
-// function animate(){
-//     c.clearRect(0,0, innerWidth, innerHeight);
-//     for(var i = 0; i < circleArray.length; i++){
-//         circleArray[i].draw();
-//     }
-//     requestAnimationFrame(animate);
-// }
-// animate();
