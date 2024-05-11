@@ -190,6 +190,7 @@ select(".error-message").text("veuillez entrer un âge valide, entre 1 et 100 an
     select("#renderEnd").style("visibility", "visible");
     select("#playButton").style("visibility", "hidden");
     select("#speedButton").style("visibility", "visible");
+    select("#speedButton").style("background-color", "red");
     isToggle = false;
   });
 
@@ -198,8 +199,6 @@ select(".error-message").text("veuillez entrer un âge valide, entre 1 et 100 an
     select("#playButton").style("visibility", "hidden");
     select("#stopButton").style("visibility", "visible");
 
-    // select("#speedButton").style("background-color", "blue");
-    // startScroll(x - 700, undefined, 4);
 
     if (isToggle) {
       select("#speedButton").style("background-color", "red");
