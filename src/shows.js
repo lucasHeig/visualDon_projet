@@ -16,7 +16,8 @@ export function createShowCard(show, e) {
     .attr("src", show.ImageSrc)
     .style("borderRadius", "40%");
   showCard.select("h2").text(getTvShowName(show.Name));
-  showCard.select("p").text(show.Description).text(show.Description);
+  showCard.select(".serie-description").text(show.Description);
+  showCard.select(".serie-episode").text(`${getTvShowEpisodes(show.Episodes)[0]} ${getTvShowEpisodes(show.Episodes)[1]} `);
   showCard
     .select(".serie-date")
     .text(`${getShowYear(show.Year)[0]} - ${getShowYear(show.Year)[1]}`);
@@ -34,6 +35,13 @@ export function getShowYear(showYear) {
 export function getTvShowName(nameTvShow) {
   const tabNameId = nameTvShow.split(".");
   return tabNameId[1];
+}
+export function getTvShowEpisodes(epsiodes) {
+const tabEpsiodes = epsiodes.split(" ");
+if (tabEpsiodes[0] === "1" ) {
+  tabEpsiodes[1] = "épisode";
+} else { tabEpsiodes[1] = "épisodes";}
+return tabEpsiodes;
 }
 export function createCircle(
   circleWidth,

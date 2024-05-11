@@ -228,6 +228,14 @@ span {
   background-color: white;
   text-align: left;
 }
+.serie-episode {
+margin: 0;
+  font-size: 14px;
+  color: #000000;
+  border-radius: 10px;
+  background-color: white;
+  text-align: left;
+}
 
 .serie-description {
   margin-top: 10px;
