@@ -130,11 +130,6 @@ button {
   padding: 10px;
 }
 
-/* div.image:hover{
-  background: none;
-  background-color: red;
-} */
-
 button:hover {
   background-color: rgb(121, 0, 0);
 }
@@ -159,9 +154,6 @@ button:hover {
   /* opacity: 0; */
 }
 
-/* .submit:hover {
-  background-color: rgb(121, 0, 0);
-} */
 img {
   width: 200px;
 }
