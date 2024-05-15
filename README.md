@@ -1,5 +1,8 @@
 # Projet Visualisation des données 🎬🍿
 Elodie Perring, Robin Frossard, Lucas Tschaler
+
+## Les liens
+Lien de notre site [Yours Life Shows](https://YoursLifeShows.netlify.app)
 Lien de notre wireframe sur [Figma](https://www.figma.com/file/vJgnhfDF7vhiCoD14Et1rU/wireFrame_visualDonn?type=design&node-id=0%3A1&mode=design&t=4hnogtyxH4RZ7kcs-1)
 
 ## Contexte
@@ -13,3 +16,5 @@ Dans un premier temps, nous allons proposer à l’utilisateur·rice de rentrer 
  
 ## Références
 Cette base de données peut aussi servir à suivre la tendance des meilleures séries d’années en années ou alimenter un algorithme de recommandation de série pour les utilisateurs·rices.
+
+Notre site [Yours Life Shows](https://YoursLifeShows.netlify.app) a été déployé grace à [Netflify](https://www.netlify.com/).
