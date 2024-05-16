@@ -2,7 +2,7 @@
 Elodie Perring, Lucas Tschaler, Robin Frossard
 
 ## Les liens 🌐
-Lien de notre site [Yours Life Shows](https://YoursLifeShows.netlify.app)
+Lien de notre site [Your TV Shows](https://your-tv-shows.netlify.app)
 Lien de notre wireframe sur [Figma](https://www.figma.com/file/vJgnhfDF7vhiCoD14Et1rU/wireFrame_visualDonn?type=design&node-id=0%3A1&mode=design&t=4hnogtyxH4RZ7kcs-1)
 
 ## Contexte
@@ -17,4 +17,4 @@ Dans un premier temps, nous allons proposer à l’utilisateur·rice de rentrer 
 ## Références 
 Cette base de données peut aussi servir à suivre la tendance des meilleures séries d’années en années ou alimenter un algorithme de recommandation de série pour les utilisateurs·rices.
 
-Notre site [Yours Life Shows](https://YoursLifeShows.netlify.app) a été déployé grace à [Netflify](https://www.netlify.com/).
+Notre site [Your TV Shows](https://your-tv-shows.netlify.app) a été déployé grace à la version gratuite de [Netflify](https://www.netlify.com/).
