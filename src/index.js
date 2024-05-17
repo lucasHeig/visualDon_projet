@@ -1,4 +1,3 @@
-
 import dataBase from "../data/IMDB.csv";
 import { select } from "d3-selection";
 import { transition } from "d3-transition";
@@ -10,7 +9,6 @@ import { count } from "d3-array";
 
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
-const currentYear = 2024;
 
 const homeSection = document.querySelector("#home");
 const startSection = document.querySelector("#ageInput");
@@ -20,7 +18,8 @@ const animationSection = document.querySelector("#animationIntroduction");
 const graphButton = document.querySelector("#bubblesButton");
 const input = document.querySelector(".input");
 const timeframeSection = document.querySelector("#timeFrame");
-
+select("#partie1").style("visibility", "hidden");
+select("#partie2").style("visibility", "hidden");
 let animationId;
 const nbCircles = 250;
 const sortShows = (year) => {
@@ -90,7 +89,7 @@ function stopScroll() {
 select("#backButton").style("visibility", "hidden");
 select("#getStarted").on("click", () => {
   select("#backButton").style("visibility", "visible");
-  console.log("click");
+
   homeSection.classList.remove("active");
   timeframeSection.classList.remove("active");
   startSection.classList.add("active");
@@ -114,26 +113,25 @@ select("#getStarted").on("click", () => {
 });
 
 select("#start").on("click", () => {
-  const age = input.value;
+  const birthYear = input.value;
 
-  if (age<1 || age>100 || isNaN(age)) {
-    console.log("Please enter a valid age");
-select(".error-message").text("veuillez entrer un âge valide, entre 1 et 100 ans. Merci!");
+  if (birthYear < 1924 || birthYear > 2023 || isNaN(birthYear)) {
+    select(".error-message").text(
+      "veuillez entrer une année de naissance valide (1924-2024). Merci!"
+    );
   } else {
     circles.forEach((circle) => {
       select(circle.circle).transition().duration(3000).style("opacity", 0);
     });
-    console.log(input.value);
-  
-    const birthYear = currentYear - age;
+
     bubbleGraphSection.classList.remove("active");
     homeSection.classList.remove("active");
     timeframeSection.classList.add("active");
     startSection.classList.remove("active");
-  
+
     const newTab = sortShows(birthYear);
     let x = 0;
-  
+
     for (const year in newTab) {
       x = x + 400;
       const show = newTab[year];
@@ -149,79 +147,77 @@ select(".error-message").text("veuillez entrer un âge valide, entre 1 et 100 an
     }
     select(graphButton).style("left", `${x + 400}px`);
     createTimeLine(x);
-      
-  let isToggle; 
-  if (age > 2) {
-    startScroll(x - 700);
-    select("#playButton").style("visibility", "hidden");
-    select("#replayButton").style("visibility", "hidden");
-    select("#stopButton").style("visibility", "visible");
-    select("#speedButton").style("visibility", "visible");
-    select("#renderEnd").style("visibility", "visible");
-    isToggle = false;
-  } else {
-    select("#renderEnd").style("visibility", "hidden");
-    select("#playButton").style("visibility", "hidden");
-    select("#replayButton").style("visibility", "hidden");
-    select("#stopButton").style("visibility", "hidden");
-    select("#speedButton").style("visibility", "hidden");
-  }
 
-  select("#stopButton").on("click", () => {
-    stopScroll();
-    isToggle = false;
-    select("#speedButton").style("visibility", "hidden");
-    // select("#playButton").style("visibility", "visible");
-    // select("#stopButton").style("visibility", "hidden");
-  });
-  select("#playButton").on("click", () => {
-    startScroll(x - 700);
-    isToggle = false;
-
-    select("#stopButton").style("visibility", "visible");
-    select("#playButton").style("visibility", "hidden");
-    select("#speedButton")
-      .style("visibility", "visible")
-      .style("background-color", "red");
-  });
-  select("#replayButton").on("click", () => {
-    startScroll(x - 700, 0);
-    select("#replayButton").style("visibility", "hidden");
-    select("#stopButton").style("visibility", "visible");
-    select("#renderEnd").style("visibility", "visible");
-    select("#playButton").style("visibility", "hidden");
-    select("#speedButton").style("visibility", "visible");
-    select("#speedButton").style("background-color", "red");
-    isToggle = false;
-  });
-
-  select("#speedButton").on("click", () => {
-    stopScroll();
-    select("#playButton").style("visibility", "hidden");
-    select("#stopButton").style("visibility", "visible");
-
-
-    if (isToggle) {
-      select("#speedButton").style("background-color", "red");
+    let isToggle;
+    if (birthYear < 2021) {
       startScroll(x - 700);
+      select("#playButton").style("visibility", "hidden");
+      select("#replayButton").style("visibility", "hidden");
+      select("#stopButton").style("visibility", "visible");
+      select("#speedButton").style("visibility", "visible");
+      select("#renderEnd").style("visibility", "visible");
       isToggle = false;
     } else {
-      select("#speedButton").style("background-color", "blue");
-      startScroll(x - 700, undefined, 4);
-      isToggle = true;
+      select("#renderEnd").style("visibility", "hidden");
+      select("#playButton").style("visibility", "hidden");
+      select("#replayButton").style("visibility", "hidden");
+      select("#stopButton").style("visibility", "hidden");
+      select("#speedButton").style("visibility", "hidden");
     }
-  });
-  select("#renderEnd").on("click", () => {
-    stopScroll();
-    window.scrollTo(x - 700, 0);
-    select("#speedButton").style("visibility", "hidden");
-    select("#playButton").style("visibility", "hidden");
-    select("#stopButton").style("visibility", "hidden");
-    select("#replayButton").style("visibility", "visible");
-    select("#renderEnd").style("visibility", "hidden");
-  });
-  }
 
+    select("#stopButton").on("click", () => {
+      stopScroll();
+      isToggle = false;
+      select("#speedButton").style("visibility", "hidden");
+      // select("#playButton").style("visibility", "visible");
+      // select("#stopButton").style("visibility", "hidden");
+    });
+    select("#playButton").on("click", () => {
+      startScroll(x - 700);
+      isToggle = false;
+
+      select("#stopButton").style("visibility", "visible");
+      select("#playButton").style("visibility", "hidden");
+      select("#speedButton")
+        .style("visibility", "visible")
+        .style("background-color", "red");
+    });
+    select("#replayButton").on("click", () => {
+      startScroll(x - 700, 0);
+      select("#replayButton").style("visibility", "hidden");
+      select("#stopButton").style("visibility", "visible");
+      select("#renderEnd").style("visibility", "visible");
+      select("#playButton").style("visibility", "hidden");
+      select("#speedButton").style("visibility", "visible");
+      select("#speedButton").style("background-color", "red");
+      isToggle = false;
+    });
+
+    select("#speedButton").on("click", () => {
+      stopScroll();
+      select("#playButton").style("visibility", "hidden");
+      select("#stopButton").style("visibility", "visible");
+
+      if (isToggle) {
+        select("#speedButton").style("background-color", "red");
+        startScroll(x - 700);
+        isToggle = false;
+      } else {
+        select("#speedButton").style("background-color", "blue");
+        startScroll(x - 700, undefined, 4);
+        isToggle = true;
+      }
+    });
+    select("#renderEnd").on("click", () => {
+      stopScroll();
+      window.scrollTo(x - 700, 0);
+      select("#speedButton").style("visibility", "hidden");
+      select("#playButton").style("visibility", "hidden");
+      select("#stopButton").style("visibility", "hidden");
+      select("#replayButton").style("visibility", "visible");
+      select("#renderEnd").style("visibility", "hidden");
+    });
+  }
 });
 
 select("#bubblesButton").on("click", () => {
@@ -232,6 +228,8 @@ select("#bubblesButton").on("click", () => {
   bubbleGraphSection.classList.add("active");
   generateBubbleGraph(dataBase.slice(0, nbCircles));
   select("#backButton").style("visibility", "visible");
+  select("#partie1").style("visibility", "visible");
+  select("#partie2").style("visibility", "visible");
 });
 select("#backButton").on("click", () => {
   location.reload();

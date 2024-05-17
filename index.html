@@ -23,7 +23,7 @@
     </section>
 
     <section id="ageInput">
-      <h1>Quel est votre âge ?</h1>
+      <h1>Quelle est votre année de naissance ?</h1>
       <label for="number"></label>
       <input class="input" type="number" name="age" required min="1"/>
 <span class="error-message"></span> 
@@ -37,11 +37,15 @@
       <button id="renderEnd">terminer</button>
       </div>
 
-      <button id="bubblesButton">Voir les 250 meilleures séries</button>
+      <button id="bubblesButton">Voir les 250 meilleures séries depuis 1955</button>
     </section>
 <section id="bubbleGraph">
 
-  <div id="bubbleChart"></div>
+  <div id="bubbleChart">
+   
+  </div>
+  <h1 id="partie1">les 250 meilleures séries </h1>
+  <h1 id="partie2">depuis 1955</h1>
   <div class="serie-card">
     <img src="" alt="Image de la série" class="serie-image" />
     <div class="serie-info">
@@ -56,6 +60,7 @@
       </div>
     </div>
   </div>
+
   <button id="backButton">Recharger</button>
 
 </section>

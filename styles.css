@@ -283,6 +283,32 @@ margin: 0;
   /* visibility: hidden; */
 }
 
+#partie2 {
+  font-family: Bebas Neue;
+  color: rgb(255, 255, 255);
+  position: fixed;
+/* margin-right: -500px; */
+margin-left: 400px;
+  top: 330px;
+  width: 300px;
+  text-align: right;
+  font-size: 40px;
+  z-index: 90;
+  background-color: transparent;
+}
+#partie1 {
+  font-family: Bebas Neue;
+  color: rgb(255, 255, 255);
+  position: fixed;
+/* margin-right: -500px; */
+margin-left: -700px;
+  top: 300px;
+  width: 300px;
+  text-align: left;
+  font-size: 40px;
+  z-index: 90;
+  background-color: transparent;
+}
 html,
 body {
   margin: 0px;

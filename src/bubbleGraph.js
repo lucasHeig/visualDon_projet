@@ -9,6 +9,7 @@ const height = window.innerHeight;
 let timer = 0;
 
 export const generateBubbleGraph = (data) => {
+ 
   const radiuScale = d3
     .scalePow()
     .exponent(0.2)
