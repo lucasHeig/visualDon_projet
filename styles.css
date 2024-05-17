@@ -39,7 +39,8 @@
 span.error-message {
   position: absolute;
   top: 360px;
-  left: 645px;
+  left: 615px;
+  z-index: 90;
   font-family: Bebas Neue;
 }
 #ageInput.active {

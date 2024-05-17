@@ -216,6 +216,9 @@ select("#start").on("click", () => {
       select("#stopButton").style("visibility", "hidden");
       select("#replayButton").style("visibility", "visible");
       select("#renderEnd").style("visibility", "hidden");
+
+
+
     });
   }
 });
