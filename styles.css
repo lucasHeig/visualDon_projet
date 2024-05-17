@@ -64,7 +64,19 @@ span.error-message {
   background-color: black;
   left: 732px;
   font-family: Bebas Neue;
+  border: 2px solid red;
+  /* border-radius: 40px; */
+  /* padding: 10px 20px; */
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
+
+#ageInput input:focus {
+  outline: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 
 button {
   font-family: Bebas Neue;

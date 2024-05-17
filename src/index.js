@@ -242,7 +242,7 @@ function getRandomInt(max, min = 0) {
 
 const circles = [];
 dataBase.slice(0, 100).forEach((data, index) => {
-  const taille = getRandomInt(90, 20);
+  const taille = getRandomInt(100, 30);
   const circle = createCircle(
     taille,
     taille,
