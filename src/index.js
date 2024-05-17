@@ -117,7 +117,7 @@ select("#start").on("click", () => {
 
   if (birthYear < 1924 || birthYear > 2023 || isNaN(birthYear)) {
     select(".error-message").text(
-      "veuillez entrer une année de naissance valide (1924-2024). Merci!"
+      "Veuillez entrer une année de naissance valide (1924-2023). Merci !"
     );
   } else {
     circles.forEach((circle) => {
